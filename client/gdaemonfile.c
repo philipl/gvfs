@@ -2807,6 +2807,9 @@ retry:
   if (proxy == NULL)
     goto out;
 
+  /* File transfers can take arbitrarily long amounts of time. */
+  g_dbus_proxy_set_default_timeout (G_DBUS_PROXY (proxy), G_MAXINT);
+
   data.progress_callback = progress_callback;
   data.progress_callback_data = progress_callback_data;
   data.context = g_main_context_new ();
